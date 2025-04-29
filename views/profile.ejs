@@ -1,0 +1,42 @@
+<%- include('partials/header', { user: user }) %>
+
+<div class="profile-container">
+    <h2>Your Profile</h2>
+    
+    <% if (typeof tokenExpiryWarning !== 'undefined' && tokenExpiryWarning) { %>
+        <div class="alert alert-warning">
+            Your session will expire soon. Please save your work and log in again.
+        </div>
+    <% } %>
+    
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <div class="avatar-placeholder">
+                    <%= user.username.charAt(0).toUpperCase() %>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h3><%= user.username %></h3>
+                <p class="profile-meta">Member since <%= user.formattedDate %></p>
+            </div>
+        </div>
+        
+        <div class="profile-details">
+            <div class="detail-item">
+                <span class="detail-label">User ID:</span>
+                <span class="detail-value"><%= user.id %></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value"><%= user.email %></span>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

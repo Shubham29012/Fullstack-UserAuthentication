@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<div class="auth-container">
+    <h2>Login to Your Account</h2>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-error">
+            <%= error %>
+        </div>
+    <% } %>
+    
+    <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success">
+            <%= success %>
+        </div>
+    <% } %>
+    
+    <form action="/login" method="POST" id="loginForm" class="auth-form">
+        <div class="form-group">
+            <label for="identifier">Username or Email</label>
+            <input 
+                type="text" 
+                id="identifier" 
+                name="identifier" 
+                required
+            >
+            <small class="form-error" id="identifier-error"></small>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required
+            >
+            <small class="form-error" id="password-error"></small>
+        </div>
+        
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="<%= recaptchaSiteKey %>"></div>
+            <small class="form-error" id="recaptcha-error"></small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    
+    <div class="auth-links">
+        <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

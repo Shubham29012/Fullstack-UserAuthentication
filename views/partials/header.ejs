@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication System</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <% if (typeof recaptchaSiteKey !== 'undefined') { %>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <% } %>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1 class="logo">Auth System</h1>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <% if (typeof user !== 'undefined') { %>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <% if (typeof tokenExpiryWarning !== 'undefined' && tokenExpiryWarning) { %>
+            <div class="alert alert-warning">
+                Your session will expire soon. Please save your work and log in again.
+            </div>
+        <% } %>
